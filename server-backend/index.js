@@ -1,5 +1,5 @@
 //Local:
-//Para testes local, deixar dessa forma:
+// Para testes local, deixar dessa forma:
 // const express = require('express');
 // const jsonServer = require('json-server')
 // const server = jsonServer.create()
@@ -18,7 +18,7 @@
 // module.exports = server;
 
 //Versel:
-//Deploy para Versel, deixar ativo dessa forma
+// Deploy para Versel, deixar ativo dessa forma
 
 const express = require('express');
 const cors = require('cors');

@@ -17,6 +17,7 @@ import {MatSidenavModule} from "@angular/material/sidenav";
 import {MatListModule} from "@angular/material/list";
 import {MatSlideToggleModule} from "@angular/material/slide-toggle";
 import {MatProgressBarModule} from "@angular/material/progress-bar";
+import {NgxMaskDirective, provideNgxMask} from "ngx-mask";
 
 
 @NgModule({
@@ -39,7 +40,8 @@ import {MatProgressBarModule} from "@angular/material/progress-bar";
     MatSidenavModule,
     MatListModule,
     MatSlideToggleModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    NgxMaskDirective
   ],
   exports: [
     MatTableModule,
@@ -58,7 +60,11 @@ import {MatProgressBarModule} from "@angular/material/progress-bar";
     MatSidenavModule,
     MatListModule,
     MatSlideToggleModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    NgxMaskDirective
+  ],
+  providers: [
+    provideNgxMask()
   ]
 })
 export class MaterialModule {

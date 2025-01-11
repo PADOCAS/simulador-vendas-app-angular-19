@@ -860,7 +860,7 @@
         "bairro": "Monsei Lima Limão",
         "cep": 17288384,
         "pais": "Brasil",
-        "telefone": "(12) 3455-7013"
+        "telefone": "12983457013"
       }
     },
     {
@@ -874,7 +874,7 @@
         "bairro": "Maria da Luz",
         "cep": 11299399,
         "pais": "Brasil",
-        "telefone": "(11) 3555-5011"
+        "telefone": "11992322883"
       }
     },
     {
@@ -882,6 +882,20 @@
       "razaoSocial": "Jackson Automóveis",
       "nomeFantasia": "Jackson Antunes",
       "tituloContato": "Aluguel veículos"
+    },
+    {
+      "id": 4,
+      "razaoSocial": "Pedrinhas Paulista de Força e Luz",
+      "tituloContato": "Distribuidor de Energia",
+      "nomeFantasia": "Valéria Padra Salles",
+      "endereco": {
+        "rua": "Almeida Leite Junior, 232",
+        "cidade": "Pedrinhas Paulista",
+        "cep": "17888223",
+        "bairro": "Maria da Graça",
+        "pais": "Brasil",
+        "telefone": "14992883211"
+      }
     }
   ]
 }

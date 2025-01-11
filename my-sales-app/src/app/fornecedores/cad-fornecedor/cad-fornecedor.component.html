@@ -78,12 +78,12 @@
         <div class="container" formGroupName="endereco">
           <mat-form-field class="item">
             <mat-label>CEP</mat-label>
-            <input matInput formControlName="cep" matIn/>
+            <input matInput formControlName="cep" mask="00000-000" [dropSpecialCharacters]="false" matIn/>
           </mat-form-field>
 
           <mat-form-field class="item">
-            <mat-label>Telefone</mat-label>
-            <input matInput formControlName="telefone"/>
+            <mat-label>Celular</mat-label>
+            <input matInput formControlName="telefone" mask="(00) 00000-0000" [dropSpecialCharacters]="false"/>
           </mat-form-field>
         </div>
       </div>

@@ -3,10 +3,8 @@ import {LoadingBarComponent} from "../../util/loading-bar/loading-bar.component"
 import {MaterialModule} from "../../material.module";
 import {NgIf} from "@angular/common";
 import {FormBuilder, ReactiveFormsModule, Validators} from "@angular/forms";
-import {CategoriasService} from "../../categorias/categorias.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {FornecedoresService} from "../fornecedores.service";
-import {Categoria} from "../../../interface/Categoria";
 import {Fornecedor} from "../../../interface/Fornecedor";
 import {lastValueFrom} from "rxjs";
 
@@ -85,8 +83,7 @@ export class CadFornecedorComponent implements OnInit {
 
   onSubmit() {
     console.log('Submit', this.fornecedorForm.value);
-    //TODO
-    // this.onSave(this.convertFormBuilderGroupToFornecedor());
+    this.onSave(this.convertFormBuilderGroupToFornecedor());
   }
 
   //Converte o formBuilderGroup com seu value para o objeto categoria:
@@ -104,8 +101,14 @@ export class CadFornecedorComponent implements OnInit {
       razaoSocial: value.razaoSocial || '',
       tituloContato: value.tituloContato || '',
       nomeFantasia: value.nomeFantasia || '',
-      //TODO....
-      endereco: null
+      endereco: {
+        rua: value.endereco?.rua || null,
+        cidade: value.endereco?.cidade || null,
+        cep: value.endereco?.cep || null,
+        bairro: value.endereco?.bairro || null,
+        pais: value.endereco?.pais || null,
+        telefone: value.endereco?.telefone || null
+      }
     };
   }
 
