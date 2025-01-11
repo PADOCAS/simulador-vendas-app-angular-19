@@ -19,7 +19,6 @@ import {MatSlideToggleModule} from "@angular/material/slide-toggle";
 import {MatProgressBarModule} from "@angular/material/progress-bar";
 import {NgxMaskDirective, provideNgxMask} from "ngx-mask";
 
-
 @NgModule({
   declarations: [],
   imports: [

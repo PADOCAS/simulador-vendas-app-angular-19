@@ -852,15 +852,15 @@
     {
       "id": 1,
       "razaoSocial": "Tokyo Traders LTDA",
-      "nomeFantasia": "Yoshi Nagase",
       "tituloContato": "Gerente Marketing",
+      "nomeFantasia": "Yoshi Nagase",
       "endereco": {
         "rua": "Sekimai Musashino, 22",
         "cidade": "Sorocaba",
+        "cep": "12321-321",
         "bairro": "Monsei Lima Limão",
-        "cep": 17288384,
         "pais": "Brasil",
-        "telefone": "12983457013"
+        "telefone": "(12) 32213-2132"
       }
     },
     {
@@ -880,8 +880,16 @@
     {
       "id": 3,
       "razaoSocial": "Jackson Automóveis",
+      "tituloContato": "Aluguel veículos",
       "nomeFantasia": "Jackson Antunes",
-      "tituloContato": "Aluguel veículos"
+      "endereco": {
+        "rua": null,
+        "cidade": null,
+        "cep": null,
+        "bairro": null,
+        "pais": null,
+        "telefone": null
+      }
     },
     {
       "id": 4,

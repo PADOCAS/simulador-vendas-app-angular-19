@@ -79,11 +79,17 @@
           <mat-form-field class="item">
             <mat-label>CEP</mat-label>
             <input matInput formControlName="cep" mask="00000-000" [dropSpecialCharacters]="false"/>
+            <mat-error *ngIf="fornecedorForm.get('endereco.cep')?.hasError('mask') && fornecedorForm.get('endereco.cep')?.touched">
+              O CEP deve estar no formato <strong>#####-###</strong>.
+            </mat-error>
           </mat-form-field>
 
           <mat-form-field class="item">
             <mat-label>Celular</mat-label>
             <input matInput formControlName="telefone" mask="(00) 00000-0000" [dropSpecialCharacters]="false"/>
+            <mat-error *ngIf="fornecedorForm.get('endereco.telefone')?.hasError('mask') && fornecedorForm.get('endereco.telefone')?.touched">
+              O Celular deve estar no formato <strong>(##) #####-####</strong>.
+            </mat-error>
           </mat-form-field>
         </div>
       </div>
