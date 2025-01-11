@@ -125,5 +125,4 @@ export class CadFornecedorComponent implements OnInit {
   cancelar() {
     this.router.navigate(["/fornecedores"]);
   }
-
 }
