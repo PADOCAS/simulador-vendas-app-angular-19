@@ -178,7 +178,15 @@ app.post('/api/fornecedores', async (req, res) => {
     let novoFornecedor = {
         id: proximoId,
         razaoSocial: req.body.nome,
-        tituloContato: req.body.descricao
+        tituloContato: req.body.descricao,
+        endereco: {
+            rua: req.body.endereco?.rua || null,
+            cidade: req.body.endereco?.cidade || null,
+            cep: req.body.endereco?.cep || null,
+            bairro: req.body.endereco?.bairro || null,
+            pais: req.body.endereco?.pais || null,
+            telefone: req.body.endereco?.telefone || null
+        }
     };
 
     db.fornecedores.push(novoFornecedor);
