@@ -22,6 +22,10 @@ export class MenuComponent {
     {
       path: 'fornecedores',
       label: 'Fornecedores'
+    },
+    {
+      path: 'produtos',
+      label: 'Produtos'
     }
   ];
 }

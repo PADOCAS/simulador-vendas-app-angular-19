@@ -4,6 +4,7 @@ import {CadCategoriaComponent} from "./categorias/cad-categoria/cad-categoria.co
 import {FornecedoresComponent} from "./fornecedores/fornecedores.component";
 
 export const routes: Routes = [
+  //Categorias:
   {
     // {path: 'categorias',component: CategoriasComponent},   // Esse modo é da forma que fica tudo junto
     path: 'categorias',
@@ -15,6 +16,7 @@ export const routes: Routes = [
   },
   {path: 'cad-categoria', component: CadCategoriaComponent},
   {path: 'cad-categoria-edit/:id', component: CadCategoriaComponent},
+  //Fornecedores:
   {
     path: 'fornecedores',
     loadComponent: () =>
@@ -34,6 +36,14 @@ export const routes: Routes = [
     loadComponent: () =>
       import('./fornecedores/cad-fornecedor/cad-fornecedor.component').then(
         (c) => c.CadFornecedorComponent
+      )
+  },
+  //Produtos:
+  {
+    path: 'produtos',
+    loadComponent: () =>
+      import('./produtos/produtos.component').then(
+        (c) => c.ProdutosComponent
       )
   },
   {path: '', component: DashboardComponent}
