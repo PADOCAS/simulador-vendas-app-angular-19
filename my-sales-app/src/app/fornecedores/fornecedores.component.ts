@@ -11,11 +11,10 @@ import {FornecedoresItem} from "./fornecedores-datasource";
 import {lastValueFrom} from "rxjs";
 
 @Component({
-  selector: 'app-fornecedores',
-  standalone: true,
-  imports: [MaterialModule, LoadingBarComponent],
-  templateUrl: './fornecedores.component.html',
-  styleUrl: './fornecedores.component.css'
+    selector: 'app-fornecedores',
+    imports: [MaterialModule, LoadingBarComponent],
+    templateUrl: './fornecedores.component.html',
+    styleUrl: './fornecedores.component.css'
 })
 export class FornecedoresComponent implements AfterViewInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;

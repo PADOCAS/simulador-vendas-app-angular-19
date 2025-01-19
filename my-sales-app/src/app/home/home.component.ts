@@ -8,16 +8,15 @@ import {RouterOutlet} from "@angular/router";
 import {MaterialModule} from "../material.module";
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrl: './home.component.css',
-  standalone: true,
-  imports: [
-    MaterialModule,
-    AsyncPipe,
-    MenuComponent,
-    RouterOutlet
-  ]
+    selector: 'app-home',
+    templateUrl: './home.component.html',
+    styleUrl: './home.component.css',
+    imports: [
+        MaterialModule,
+        AsyncPipe,
+        MenuComponent,
+        RouterOutlet
+    ]
 })
 export class HomeComponent {
   private breakpointObserver = inject(BreakpointObserver);

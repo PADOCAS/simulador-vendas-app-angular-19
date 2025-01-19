@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, ReactiveFormsModule, Validators} from "@angular/forms";
 import {LoadingBarComponent} from "../../util/loading-bar/loading-bar.component";
-import {NgIf} from "@angular/common";
+import {NgForOf, NgIf} from "@angular/common";
 import {MaterialModule} from "../../material.module";
 import {ActivatedRoute, Router} from "@angular/router";
 import {ProdutosService} from "../produtos.service";
@@ -9,12 +9,14 @@ import {Produto} from "../../../interface/Produto";
 import {lastValueFrom} from "rxjs";
 import {Fornecedor} from "../../../interface/Fornecedor";
 import {FornecedoresService} from "../../fornecedores/fornecedores.service";
+import {MatOption, MatSelect} from "@angular/material/select";
+import {Categoria} from "../../../interface/Categoria";
+import {CategoriasService} from "../../categorias/categorias.service";
 
 @Component({
   selector: 'app-cad-produto',
-  standalone: true,
   imports: [
-    ReactiveFormsModule, MaterialModule, NgIf, LoadingBarComponent
+    ReactiveFormsModule, MaterialModule, NgIf, LoadingBarComponent, MatSelect, MatOption, NgForOf
   ],
   templateUrl: './cad-produto.component.html',
   styleUrl: './cad-produto.component.css'
@@ -22,31 +24,16 @@ import {FornecedoresService} from "../../fornecedores/fornecedores.service";
 export class CadProdutoComponent implements OnInit {
   showLoading: Boolean = false;
   listFornecedor: Array<Fornecedor> | any = null;
+  listCategoria: Array<Categoria> | any = null;
+
   // Vamos trabalhar com formulário reativo, usando FormBuilder, que agrupa um conjunto de campos de formulário,
   // Ele nos ajuda com esqueleto do formulário, validações, valor padrão... muito bom!
   // produtoForm -> é uma variável do tipo FormGroup que representa os dados que estarão
   // presentes no formulário. Cada campo no formulário é representado pela classe FormControl
   produtoForm = this.form.group({
     id: [null as number | null],
-    fornecedor: this.form.group({
-      id: [null as number | null],
-      razaoSocial: [''],
-      tituloContato: [''],
-      nomeFantasia: [''],
-      endereco: this.form.group({
-        rua: [''],
-        cidade: [''],
-        bairro: [''],
-        cep: [null as number | null],
-        pais: [''],
-        telefone: ['']
-      })
-    }),
-    categoria: this.form.group({
-      id: [null as number | null],
-      nome: [''],
-      descricao: ['']
-    }),
+    fornecedorId: [null as number | null, Validators.required],
+    categoriaId: [null as number | null, Validators.required],
     unidadeMedida: ['', [Validators.required, Validators.minLength(2)]],
     precoUnitario: [null as number | null, [Validators.required]],
     qtdeEstoque: [null as number | null, [Validators.required]],
@@ -54,7 +41,7 @@ export class CadProdutoComponent implements OnInit {
     descricao: ['', [Validators.required, Validators.minLength(3)]]
   });
 
-  constructor(private produtosService: ProdutosService, private fornecedoresService: FornecedoresService, private form: FormBuilder, private router: Router, private routeActive: ActivatedRoute) {
+  constructor(private produtosService: ProdutosService, private fornecedoresService: FornecedoresService, private categoriasService: CategoriasService, private form: FormBuilder, private router: Router, private routeActive: ActivatedRoute) {
   }
 
   ngOnInit(): void {
@@ -73,25 +60,8 @@ export class CadProdutoComponent implements OnInit {
             let produto = data as Produto;
             this.produtoForm.setValue({
               id: produto.id,
-              fornecedor: {
-                id: produto.fornecedor?.id || null,
-                razaoSocial: produto.fornecedor.razaoSocial || null,
-                tituloContato: produto.fornecedor.tituloContato || null,
-                nomeFantasia: produto.fornecedor.nomeFantasia || '',
-                endereco: {
-                  rua: produto.fornecedor.endereco?.rua || '',
-                  cidade: produto.fornecedor.endereco?.cidade || '',
-                  bairro: produto.fornecedor.endereco?.bairro || '',
-                  cep: produto.fornecedor.endereco?.cep || null,
-                  pais: produto.fornecedor.endereco?.pais || '',
-                  telefone: produto.fornecedor.endereco?.telefone || '',
-                }
-              },
-              categoria: {
-                id: produto.categoria?.id || null,
-                nome: produto.categoria?.nome || '',
-                descricao: produto.categoria?.descricao || ''
-              },
+              fornecedorId: produto.fornecedorId || null,  // Apenas o ID do fornecedor
+              categoriaId: produto.categoriaId || null, //Apenas o ID da categoria
               unidadeMedida: produto.unidadeMedida,
               precoUnitario: produto.precoUnitario,
               qtdeEstoque: produto.qtdeEstoque,
@@ -112,6 +82,13 @@ export class CadProdutoComponent implements OnInit {
       }, error => {
         console.log('Erro ao carregar Fornecedores: ' + error);
       });
+
+    this.categoriasService.getCategorias().subscribe(
+      data => {
+        this.listCategoria = data;
+      }, error => {
+        console.log('Erro ao carregar Categorias: ' + error);
+      });
   }
 
   onSubmit() {
@@ -130,25 +107,8 @@ export class CadProdutoComponent implements OnInit {
 
     return {
       id: value.id ?? 0,
-      fornecedor: {
-        id: value.fornecedor?.id ?? 0,
-        razaoSocial: value.fornecedor?.razaoSocial || '',
-        tituloContato: value.fornecedor?.tituloContato || '',
-        nomeFantasia: value.fornecedor?.nomeFantasia || '',
-        endereco: {
-          rua: value.fornecedor?.endereco?.rua || null,
-          cidade: value.fornecedor?.endereco?.cidade || null,
-          cep: value.fornecedor?.endereco?.cep || null,
-          bairro: value.fornecedor?.endereco?.bairro || null,
-          pais: value.fornecedor?.endereco?.pais || null,
-          telefone: value.fornecedor?.endereco?.telefone || null
-        }
-      },
-      categoria: {
-        id: value.categoria?.id ?? 0,
-        nome: value.categoria?.nome || '',
-        descricao: value.categoria?.descricao || ''
-      },
+      fornecedorId: value.fornecedorId ?? 0,
+      categoriaId: value.categoriaId ?? 0,
       unidadeMedida: value.unidadeMedida || '',
       precoUnitario: value.precoUnitario || null,
       qtdeEstoque: value.qtdeEstoque || null,

@@ -12,11 +12,10 @@ import {LoadingBarComponent} from "../util/loading-bar/loading-bar.component";
 import {MaterialModule} from "../material.module";
 
 @Component({
-  selector: 'app-categorias',
-  templateUrl: './categorias.component.html',
-  styleUrl: './categorias.component.css',
-  standalone: true,
-  imports: [MaterialModule, MatButton, LoadingBarComponent]
+    selector: 'app-categorias',
+    templateUrl: './categorias.component.html',
+    styleUrl: './categorias.component.css',
+    imports: [MaterialModule, MatButton, LoadingBarComponent]
 })
 export class CategoriasComponent implements AfterViewInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;

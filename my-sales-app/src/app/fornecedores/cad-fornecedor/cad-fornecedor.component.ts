@@ -9,13 +9,12 @@ import {Fornecedor} from "../../../interface/Fornecedor";
 import {lastValueFrom} from "rxjs";
 
 @Component({
-  selector: 'app-cad-fornecedor',
-  standalone: true,
-  imports: [
-    ReactiveFormsModule, MaterialModule, NgIf, LoadingBarComponent
-  ],
-  templateUrl: './cad-fornecedor.component.html',
-  styleUrl: './cad-fornecedor.component.css'
+    selector: 'app-cad-fornecedor',
+    imports: [
+        ReactiveFormsModule, MaterialModule, NgIf, LoadingBarComponent
+    ],
+    templateUrl: './cad-fornecedor.component.html',
+    styleUrl: './cad-fornecedor.component.css'
 })
 export class CadFornecedorComponent implements OnInit {
   showLoading: Boolean = false;

@@ -5,14 +5,13 @@ import {AsyncPipe} from '@angular/common';
 import {MaterialModule} from "../material.module";
 
 @Component({
-  selector: 'app-dashboard',
-  templateUrl: './dashboard.component.html',
-  styleUrl: './dashboard.component.css',
-  standalone: true,
-  imports: [
-    AsyncPipe,
-    MaterialModule
-  ]
+    selector: 'app-dashboard',
+    templateUrl: './dashboard.component.html',
+    styleUrl: './dashboard.component.css',
+    imports: [
+        AsyncPipe,
+        MaterialModule
+    ]
 })
 export class DashboardComponent {
   private breakpointObserver = inject(BreakpointObserver);

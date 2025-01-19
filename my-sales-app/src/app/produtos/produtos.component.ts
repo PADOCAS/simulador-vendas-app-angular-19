@@ -15,7 +15,6 @@ import {NgClass} from "@angular/common";
     selector: 'app-produtos',
     templateUrl: './produtos.component.html',
     styleUrl: './produtos.component.css',
-    standalone: true,
     imports: [MaterialModule, LoadingBarComponent, NgClass]
 })
 export class ProdutosComponent implements AfterViewInit {

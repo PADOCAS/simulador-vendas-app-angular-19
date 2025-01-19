@@ -79,12 +79,8 @@
   "produtos": [
     {
       "id": 1,
-      "fornecedor": {
-        "id": 5
-      },
-      "categoria": {
-        "id": 1
-      },
+      "fornecedorId": 5,
+      "categoriaId": 1,
       "unidadeMedida": "UN",
       "precoUnitario": 6.52,
       "qtdeEstoque": 32,
@@ -93,12 +89,8 @@
     },
     {
       "id": 2,
-      "fornecedor": {
-        "id": 5
-      },
-      "categoria": {
-        "id": 1
-      },
+      "fornecedorId": 5,
+      "categoriaId": 1,
       "unidadeMedida": "UN",
       "precoUnitario": 8.12,
       "qtdeEstoque": 20,
@@ -107,12 +99,8 @@
     },
     {
       "id": 3,
-      "fornecedor": {
-        "id": 4
-      },
-      "categoria": {
-        "id": 2
-      },
+      "fornecedorId": 4,
+      "categoriaId": 2,
       "unidadeMedida": "UN",
       "precoUnitario": 55.56,
       "qtdeEstoque": 12,
@@ -121,12 +109,8 @@
     },
     {
       "id": 4,
-      "fornecedor": {
-        "id": 3
-      },
-      "categoria": {
-        "id": 1
-      },
+      "fornecedorId": 3,
+      "categoriaId": 1,
       "unidadeMedida": "KG",
       "precoUnitario": 2.54,
       "qtdeEstoque": 200,

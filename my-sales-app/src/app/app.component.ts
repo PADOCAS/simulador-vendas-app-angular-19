@@ -5,11 +5,10 @@ import {MaterialModule} from "./material.module";
 import {NavigationEnd, Router} from "@angular/router";
 
 @Component({
-  selector: 'app-root',
-  standalone: true,
-  imports: [CommonModule, MaterialModule, HomeComponent],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+    selector: 'app-root',
+    imports: [CommonModule, MaterialModule, HomeComponent],
+    templateUrl: './app.component.html',
+    styleUrl: './app.component.css'
 })
 export class AppComponent implements OnInit {
 

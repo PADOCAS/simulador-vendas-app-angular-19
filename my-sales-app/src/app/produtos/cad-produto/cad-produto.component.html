@@ -13,8 +13,8 @@
           </mat-form-field>
         </div>
 
-        <div class="container">
-          <mat-form-field class="item">
+        <div class="container" style="display: flex;">
+          <mat-form-field class="item" style="flex: 3">
             <mat-label>Descrição</mat-label>
             <input matInput formControlName="descricao"/>
             @if (produtoForm.controls['descricao'].hasError('required')) {
@@ -24,10 +24,8 @@
               <mat-error>Descrição deve ter no mínimo 3 caracteres</mat-error>
             }
           </mat-form-field>
-        </div>
 
-        <div class="container">
-          <mat-form-field class="item">
+          <mat-form-field class="item" style="flex: 1;">
             <mat-label>Unidade Medida</mat-label>
             <input matInput formControlName="unidadeMedida"/>
             @if (produtoForm.controls['unidadeMedida'].hasError('required')) {
@@ -41,15 +39,33 @@
 
         <div class="container">
           <mat-form-field class="item">
+            <mat-label>Categoria</mat-label>
+            <mat-select formControlName="categoriaId" placeholder="Selecione uma Categoria...">
+              <mat-option [value]="null">
+                Selecione uma Categoria...
+              </mat-option>
+              <mat-option *ngFor="let categoria of listCategoria" [value]="categoria.id">
+                <mat-icon>category</mat-icon>
+                {{ '(' + categoria.id + ') ' + categoria.nome }}
+              </mat-option>
+            </mat-select>
+            @if (produtoForm.controls['categoriaId'].hasError('required')) {
+              <mat-error>Categoria é <strong>requerida</strong></mat-error>
+            }
+          </mat-form-field>
+
+          <mat-form-field class="item">
             <mat-label>Fornecedor</mat-label>
-            <ng-select id="ngSelectProfissao"
-                       [items]="listFornecedor"
-                       bindLabel="razaosocial"
-                       bindValue="id"
-                       placeholder="Selecione um fornecedor"
-                       formControlName="fornecedor"
-                       notFoundText="Nenhum Fornecedor encontrado" />
-            @if (produtoForm.controls['fornecedor'].hasError('required')) {
+            <mat-select formControlName="fornecedorId" placeholder="Selecione um fornecedor...">
+              <mat-option [value]="null">
+                Selecione um Fornecedor...
+              </mat-option>
+              <mat-option *ngFor="let fornecedor of listFornecedor" [value]="fornecedor.id">
+                <mat-icon>business</mat-icon>
+                {{ '(' + fornecedor.id + ') ' + fornecedor.razaoSocial }}
+              </mat-option>
+            </mat-select>
+            @if (produtoForm.controls['fornecedorId'].hasError('required')) {
               <mat-error>Fornecedor é <strong>requerido</strong></mat-error>
             }
           </mat-form-field>

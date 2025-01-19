@@ -9,11 +9,10 @@ import {LoadingBarComponent} from "../../util/loading-bar/loading-bar.component"
 import {MaterialModule} from "../../material.module";
 
 @Component({
-  selector: 'app-cad-categoria',
-  standalone: true,
-  imports: [ReactiveFormsModule, MaterialModule, NgIf, LoadingBarComponent],
-  templateUrl: './cad-categoria.component.html',
-  styleUrl: './cad-categoria.component.css'
+    selector: 'app-cad-categoria',
+    imports: [ReactiveFormsModule, MaterialModule, NgIf, LoadingBarComponent],
+    templateUrl: './cad-categoria.component.html',
+    styleUrl: './cad-categoria.component.css'
 })
 export class CadCategoriaComponent implements OnInit {
   showLoading: Boolean = false;

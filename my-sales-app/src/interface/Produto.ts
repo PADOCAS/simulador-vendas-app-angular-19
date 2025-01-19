@@ -1,10 +1,7 @@
-import {Fornecedor} from "./Fornecedor";
-import {Categoria} from "./Categoria";
-
 export interface Produto {
   id: number
-  fornecedor: Fornecedor
-  categoria: Categoria
+  fornecedorId: number
+  categoriaId: number
   unidadeMedida: string
   precoUnitario: number | null
   qtdeEstoque: number | null
