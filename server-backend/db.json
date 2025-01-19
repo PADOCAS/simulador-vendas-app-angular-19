@@ -118,6 +118,20 @@
       "qtdeEstoque": 12,
       "ativo": false,
       "descricao": "Produto Teste"
+    },
+    {
+      "id": 4,
+      "fornecedor": {
+        "id": 3
+      },
+      "categoria": {
+        "id": 1
+      },
+      "unidadeMedida": "KG",
+      "precoUnitario": 2.54,
+      "qtdeEstoque": 200,
+      "ativo": true,
+      "descricao": "Limão Taiti"
     }
   ],
   "fornecedores": [
