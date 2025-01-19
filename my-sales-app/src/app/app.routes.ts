@@ -46,5 +46,19 @@ export const routes: Routes = [
         (c) => c.ProdutosComponent
       )
   },
+  {
+    path: 'cad-produto',
+    loadComponent: () =>
+      import('./produtos/cad-produto/cad-produto.component').then(
+        (c) => c.CadProdutoComponent
+      )
+  },
+  {
+    path: 'cad-produto-edit/:id',
+    loadComponent: () =>
+      import('./produtos/cad-produto/cad-produto.component').then(
+        (c) => c.CadProdutoComponent
+      )
+  },
   {path: '', component: DashboardComponent}
 ];

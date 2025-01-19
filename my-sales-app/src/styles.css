@@ -43,6 +43,13 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .item {
   flex: 1 1 auto;
 }
+
+.mat-mdc-card-title {
+  font-weight: 500 !important;
+  text-decoration: underline !important;
+}
+
+
 /* tablet or mobile */
 @media (max-width: 768px) {
   .container {

@@ -35,7 +35,7 @@ export class FornecedoresComponent implements AfterViewInit {
   }
 
   async loadFornecedores(): Promise<void> {
-    //Chamada assincrona, para alimentar  o data source ele aguarda a resposta do service com os Fornecedores:
+    //Chamada assincrona, para alimentar o data source ele aguarda a resposta do service com os Fornecedores:
     this.showLoading = true;
     let fornecedores = await lastValueFrom(this.fornecedorService.getFornecedores());
     this.dataSource = new MatTableDataSource(fornecedores);

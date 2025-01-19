@@ -1,0 +1,27 @@
+.full-width-table {
+  width: 100%;
+}
+
+.produto-inativo {
+  color: red !important;
+}
+
+.legenda {
+  text-align: left;
+  margin-top: 10px;
+  margin-bottom: 5px;
+  margin-left: 15px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+
+.legenda-icon {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  background-color: red;
+  border-radius: 4px;
+  margin-right: 8px;
+  border: 1px solid #ced4da;;
+}

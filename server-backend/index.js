@@ -1,5 +1,5 @@
 //Local:
-// Para testes local, deixar dessa forma:
+//Para testes local, deixar dessa forma:
 // const express = require('express');
 // const jsonServer = require('json-server')
 // const server = jsonServer.create()
@@ -19,7 +19,6 @@
 
 //Versel:
 // Deploy para Versel, deixar ativo dessa forma
-
 const express = require('express');
 const cors = require('cors');
 const fs = require('fs/promises');
@@ -222,6 +221,81 @@ app.delete('/api/fornecedores/:id', async (req, res) => {
     } else {
         res.status(404).json({ message: 'Fornecedor não encontrado' });
     }
+});
+
+/**** -------------  Produtos: -------------------****/
+app.get('/api/produtos', async (req, res) => {
+  const db = await loadDB();
+  res.json(db.produtos || []);
+});
+
+// Endpoint para buscar um Produto por ID
+app.get('/api/produtos/:id', async (req, res) => {
+  const id = parseInt(req.params.id);
+  const db = await loadDB();
+  const produto = db.produtos.find(c => c.id === id);
+  if (produto) {
+    res.json(produto);
+  } else {
+    res.status(404).json({ message: 'Produto não encontrado' });
+  }
+});
+
+// Endpoint para adicionar um novo Produto
+app.post('/api/produtos', async (req, res) => {
+  //Carrega o banco:
+  let db = await loadDB();
+
+  // Ler os IDs existentes dos produtos
+  let listIdsProdutos = db.produtos.map(produto => parseInt(produto.id));
+  // Encontrar o maior ID
+  let maiorId = Math.max(...listIdsProdutos);
+  // Calcular o próximo ID
+  let proximoId = maiorId + 1;
+
+  //id: Date.now() //Caso quiser definir um ID com a data!
+  let novoProduto = {
+    id: proximoId,
+    fornecedor: req.body.fornecedor,
+    categoria: req.body.categoria,
+    unidadeMedida: req.body.unidadeMedida,
+    precoUnitario: req.body.precoUnitario,
+    qtdeEstoque: req.body.qtdeEstoque,
+    ativo: req.body.ativo,
+    descricao: req.body.descricao
+  };
+
+  db.produtos.push(novoProduto);
+  saveDB();
+  res.status(201).json(novoProduto);
+});
+
+// Endpoint para atualizar um Produto
+app.put('/api/produtos/:id', async (req, res) => {
+  const id = parseInt(req.params.id);
+  const db = await loadDB();
+  const index = db.produtos.findIndex(c => c.id === id);
+  if (index !== -1) {
+    Object.assign(db.produtos[index], req.body);
+    saveDB();
+    res.json(db.produtos[index]);
+  } else {
+    res.status(404).json({ message: 'Produto não encontrado' });
+  }
+});
+
+// Endpoint para deletar um Produto
+app.delete('/api/produtos/:id', async (req, res) => {
+  const id = parseInt(req.params.id);
+  const db = await loadDB();
+  const index = db.produtos.findIndex(c => c.id === id);
+  if (index !== -1) {
+    db.produtos.splice(index, 1);
+    saveDB();
+    res.status(204).send('Produto deletado com sucesso');
+  } else {
+    res.status(404).json({ message: 'Produto não encontrado' });
+  }
 });
 
 module.exports = app;
