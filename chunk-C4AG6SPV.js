@@ -1,1 +1,0 @@
-import{Db as a,Eb as i,Yb as r,ac as d,ka as o}from"./chunk-MRXOC5DB.js";var O=(()=>{let e=class e{};e.\u0275fac=function(n){return new(n||e)},e.\u0275cmp=o({type:e,selectors:[["app-cad-produto"]],standalone:!0,features:[d],decls:2,vars:0,template:function(n,c){n&1&&(a(0,"p"),r(1,"TODOOOOOOOOOOO -- cad Produto"),i())}});let t=e;return t})();export{O as CadProdutoComponent};
