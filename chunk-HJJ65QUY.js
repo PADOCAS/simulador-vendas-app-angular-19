@@ -1,1 +1,0 @@
-import{Db as a,Eb as r,Yb as i,ac as s,ka as n}from"./chunk-DQCAUZTF.js";var m=(()=>{let e=class e{};e.\u0275fac=function(o){return new(o||e)},e.\u0275cmp=n({type:e,selectors:[["app-produtos"]],standalone:!0,features:[s],decls:2,vars:0,template:function(o,d){o&1&&(a(0,"p"),i(1,"TODO --- Cadastro Produtos"),r())}});let t=e;return t})();export{m as ProdutosComponent};
