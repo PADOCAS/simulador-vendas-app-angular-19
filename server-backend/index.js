@@ -176,7 +176,6 @@ app.post('/api/fornecedores', async (req, res) => {
     //id: Date.now() //Caso quiser definir um ID com a data!
     let novoFornecedor = {
         id: proximoId,
-        razaoSocial: req.body.nome,
         tituloContato: req.body.tituloContato,
         razaoSocial: req.body.razaoSocial,
         nomeFantasia: req.body.nomeFantasia,
