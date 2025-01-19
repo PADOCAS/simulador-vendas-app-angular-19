@@ -86,7 +86,7 @@ export class CadFornecedorComponent implements OnInit {
     this.onSave(this.convertFormBuilderGroupToFornecedor());
   }
 
-  //Converte o formBuilderGroup com seu value para o objeto categoria:
+  //Converte o formBuilderGroup com seu value para o objeto fornecedor:
   private convertFormBuilderGroupToFornecedor(): Fornecedor {
     // Habilita o campo 'id' antes de capturar os valores (Usamos o optional chaining ? para validar se ta nulo ou undefined ele ignorar (casos de inclusào))
     this.fornecedorForm.get('id')?.enable();

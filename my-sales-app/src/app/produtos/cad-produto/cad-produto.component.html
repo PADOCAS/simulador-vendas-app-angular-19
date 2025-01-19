@@ -1,1 +1,78 @@
-<p>TODOOOOOOOOOOO -- cad Produto</p>
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Produto</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <!--  Não vamos usar validação do proprio navegador, por isso usamos o novalidate, vamos trabalhar nós mesmos com as validações-->
+    <form [formGroup]="produtoForm" (ngSubmit)="onSubmit()" novalidate>
+      <div>
+        <div *ngIf="produtoForm.get('id')?.value !== null">
+          <mat-form-field class="item-20">
+            <mat-label>Id</mat-label>
+            <input matInput formControlName="id"/>
+          </mat-form-field>
+        </div>
+
+        <div class="container">
+          <mat-form-field class="item">
+            <mat-label>Descrição</mat-label>
+            <input matInput formControlName="descricao"/>
+            @if (produtoForm.controls['descricao'].hasError('required')) {
+              <mat-error>Descrição é <strong>requerida</strong></mat-error>
+            }
+            @if (produtoForm.controls['descricao'].hasError('minlength')) {
+              <mat-error>Descrição deve ter no mínimo 3 caracteres</mat-error>
+            }
+          </mat-form-field>
+        </div>
+
+        <div class="container">
+          <mat-form-field class="item">
+            <mat-label>Unidade Medida</mat-label>
+            <input matInput formControlName="unidadeMedida"/>
+            @if (produtoForm.controls['unidadeMedida'].hasError('required')) {
+              <mat-error>Unidade Medida é <strong>requerida</strong></mat-error>
+            }
+            @if (produtoForm.controls['unidadeMedida'].hasError('minlength')) {
+              <mat-error>Unidade Medida deve ter no mínimo 2 caracteres</mat-error>
+            }
+          </mat-form-field>
+        </div>
+
+        <div class="container">
+          <mat-form-field class="item">
+            <mat-label>Fornecedor</mat-label>
+            <ng-select id="ngSelectProfissao"
+                       [items]="listFornecedor"
+                       bindLabel="razaosocial"
+                       bindValue="id"
+                       placeholder="Selecione um fornecedor"
+                       formControlName="fornecedor"
+                       notFoundText="Nenhum Fornecedor encontrado" />
+            @if (produtoForm.controls['fornecedor'].hasError('required')) {
+              <mat-error>Fornecedor é <strong>requerido</strong></mat-error>
+            }
+          </mat-form-field>
+        </div>
+      </div>
+
+      <button mat-raised-button
+              color="primary"
+              type="submit"
+              style="margin-right: 8px !important; margin-bottom: 16px !important;"
+              [disabled]="!produtoForm.valid">
+        Salvar
+      </button>
+      <button type="button"
+              mat-raised-button
+              color="primary"
+              style="margin-bottom: 16px !important;"
+              (click)="cancelar()">
+        Cancelar
+      </button>
+    </form>
+  </mat-card-content>
+
+  <!-- progress bar-->
+  <app-loading-bar [visible]="showLoading"></app-loading-bar>
+</mat-card>

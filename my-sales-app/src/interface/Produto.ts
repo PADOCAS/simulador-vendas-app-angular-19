@@ -3,11 +3,11 @@ import {Categoria} from "./Categoria";
 
 export interface Produto {
   id: number
-  fornecedor: Fornecedor | null
-  categoria: Categoria | null
+  fornecedor: Fornecedor
+  categoria: Categoria
   unidadeMedida: string
-  precoUnitario: number
-  qtdeEstoque: number
+  precoUnitario: number | null
+  qtdeEstoque: number | null
   ativo: boolean
   descricao: string
 }
