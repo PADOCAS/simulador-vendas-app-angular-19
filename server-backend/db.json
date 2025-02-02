@@ -74,6 +74,11 @@
       "id": 16,
       "nome": "teste",
       "descricao": "teste 1"
+    },
+    {
+      "id": 17,
+      "nome": "Arroz Doce",
+      "descricao": "Arroz doce da Tia Lulu"
     }
   ],
   "produtos": [
