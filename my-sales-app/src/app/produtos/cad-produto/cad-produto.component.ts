@@ -53,7 +53,7 @@ export class CadProdutoComponent implements OnInit {
         this.filteredCategoriaOptions = this.listCategoria.slice();
       }
 
-      this.carregarFornecedores().then((data) => {
+      this.carregarFornecedores().then(() => {
         if (this.routeActive !== undefined
           && this.routeActive !== null
           && this.routeActive.snapshot !== undefined
@@ -162,7 +162,7 @@ export class CadProdutoComponent implements OnInit {
   async onSave(produto: Produto) {
     //Async/Await -> Esperando a resposta do salvar para ai sim redirecionar a página, já com a alteração sendo carregada lá na listagem!
     this.showLoading = true;
-    let saved = await lastValueFrom(this.produtosService.salvar(produto));
+    await lastValueFrom(this.produtosService.salvar(produto));
     this.showLoading = false;
     //Ao salvar redireciona para a listagem:
     this.router.navigate(["/produtos"]);
