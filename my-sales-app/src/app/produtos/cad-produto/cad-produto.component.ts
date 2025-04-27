@@ -1,5 +1,5 @@
-import {Component, OnInit} from '@angular/core';
-import {FormBuilder, ReactiveFormsModule, Validators} from "@angular/forms";
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {AbstractControl, FormBuilder, ReactiveFormsModule, Validators} from "@angular/forms";
 import {LoadingBarComponent} from "../../util/loading-bar/loading-bar.component";
 import {NgForOf, NgIf} from "@angular/common";
 import {MaterialModule} from "../../material.module";
@@ -25,6 +25,8 @@ export class CadProdutoComponent implements OnInit {
   showLoading: Boolean = false;
   listFornecedor: Array<Fornecedor> | any = null;
   listCategoria: Array<Categoria> | any = null;
+  @ViewChild('inputCategoria') inputCategoria: ElementRef<HTMLInputElement> | any;
+  filteredCategoriaOptions: Categoria[] | undefined;
 
   // Vamos trabalhar com formulário reativo, usando FormBuilder, que agrupa um conjunto de campos de formulário,
   // Ele nos ajuda com esqueleto do formulário, validações, valor padrão... muito bom!
@@ -33,7 +35,7 @@ export class CadProdutoComponent implements OnInit {
   produtoForm = this.form.group({
     id: [null as number | null],
     fornecedorId: [null as number | null, Validators.required],
-    categoriaId: [null as number | null, Validators.required],
+    categoria: [null as Categoria | null, [Validators.required, this.categoriaValidaValidator()]],
     unidadeMedida: ['', [Validators.required, Validators.minLength(2)]],
     precoUnitario: [null as number | null, [Validators.required]],
     qtdeEstoque: [null as number | null, [Validators.required]],
@@ -45,50 +47,90 @@ export class CadProdutoComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    if (this.routeActive !== undefined
-      && this.routeActive !== null
-      && this.routeActive.snapshot !== undefined
-      && this.routeActive.snapshot !== null
-      && this.routeActive.snapshot.paramMap !== undefined
-      && this.routeActive.snapshot.paramMap !== null
-      && this.routeActive.snapshot.paramMap.get('id') !== undefined
-      && this.routeActive.snapshot.paramMap.get('id') !== null) {
-      this.produtosService.pegar(Number(this.routeActive.snapshot.paramMap.get('id'))).subscribe(
-        data => {
-          if (data !== undefined
-            && data !== null) {
-            let produto = data as Produto;
-            this.produtoForm.setValue({
-              id: produto.id,
-              fornecedorId: produto.fornecedorId || null,  // Apenas o ID do fornecedor
-              categoriaId: produto.categoriaId || null, //Apenas o ID da categoria
-              unidadeMedida: produto.unidadeMedida,
-              precoUnitario: produto.precoUnitario,
-              qtdeEstoque: produto.qtdeEstoque,
-              ativo: produto.ativo,
-              descricao: produto.descricao
-            });
+    this.carregarCategorias().then(() => {
+      if (this.listCategoria !== null
+        && this.listCategoria.length > 0) {
+        this.filteredCategoriaOptions = this.listCategoria.slice();
+      }
 
-            //Desabilita o ID quando é consulta, apenas mostra
-            this.produtoForm.get('id')?.disable();
-          }
+      this.carregarFornecedores().then((data) => {
+        if (this.routeActive !== undefined
+          && this.routeActive !== null
+          && this.routeActive.snapshot !== undefined
+          && this.routeActive.snapshot !== null
+          && this.routeActive.snapshot.paramMap !== undefined
+          && this.routeActive.snapshot.paramMap !== null
+          && this.routeActive.snapshot.paramMap.get('id') !== undefined
+          && this.routeActive.snapshot.paramMap.get('id') !== null) {
+          this.produtosService.pegar(Number(this.routeActive.snapshot.paramMap.get('id'))).subscribe(
+            data => {
+              if (data !== undefined
+                && data !== null) {
+                let produto = data as Produto;
+                this.produtoForm.setValue({
+                  id: produto.id,
+                  fornecedorId: produto.fornecedorId || null,  // Apenas o ID do fornecedor
+                  categoria: produto.categoria || null, //Categoria
+                  unidadeMedida: produto.unidadeMedida,
+                  precoUnitario: produto.precoUnitario,
+                  qtdeEstoque: produto.qtdeEstoque,
+                  ativo: produto.ativo !== null && produto.ativo !== undefined ? produto.ativo : true,
+                  descricao: produto.descricao
+                });
+
+                //Desabilita o ID quando é consulta, apenas mostra
+                this.produtoForm.get('id')?.disable();
+              }
+            }
+          );
         }
-      );
-    }
-
-    this.fornecedoresService.getFornecedores().subscribe(
-      data => {
-        this.listFornecedor = data;
+        //Para conseguir pegar os métodos, atributos, tudo via console do navegador e validar dados... usar isso aqui:
+        //Ai no navegador console é so colocar comp.... e vai acessando os métodos tal, atributos... MUITO BOM!!!!
+        (window as any).comp = this;
       }, error => {
         console.log('Erro ao carregar Fornecedores: ' + error);
-      });
+      })
+    }, error => {
+      console.log('Erro ao carregar Categorias: ' + error);
+    });
+  }
 
-    this.categoriasService.getCategorias().subscribe(
-      data => {
-        this.listCategoria = data;
-      }, error => {
-        console.log('Erro ao carregar Categorias: ' + error);
-      });
+  //Carregamento com Promisse, vamos aguardar finalizar para carregar os campos do formulário no onInit:
+  async carregarCategorias(): Promise<void> {
+    this.listCategoria = await this.categoriasService.getCategorias().toPromise();
+  }
+
+  //Carregamento com Promisse, vamos aguardar finalizar para carregar os campos do formulário no onInit:
+  async carregarFornecedores(): Promise<void> {
+    this.listFornecedor = await this.fornecedoresService.getFornecedores().toPromise();
+  }
+
+  displayCategoria = (categoria: Categoria): string => {
+    return categoria ? `(${categoria.id}) ${categoria.nome}` : '';
+  };
+
+  filterCategoria(): void {
+    const input = this.inputCategoria.nativeElement.value?.toLowerCase() || '';
+    this.filteredCategoriaOptions = this.listCategoria?.filter((c: Categoria) =>
+      c.nome.toLowerCase().includes(input) || c.id.toString().includes(input)
+    ) || [];
+  }
+
+  onCategoriaSelected(categoria: Categoria): void {
+    this.produtoForm.controls['categoria'].setValue(categoria);
+    this.produtoForm.controls['categoria'].markAsTouched(); // Força atualização do estado
+    this.produtoForm.updateValueAndValidity(); // Atualiza validação do formulário
+  }
+
+  categoriaValidaValidator() {
+    return (control: AbstractControl) => {
+      const value = control.value;
+      if (value && typeof value === 'object' && 'id' in value && 'nome' in value) {
+        control.markAsTouched(); // Marca como tocado para atualizar o estado
+        return null; // válido
+      }
+      return {invalidCategoria: true}; // inválido
+    };
   }
 
   onSubmit() {
@@ -108,11 +150,11 @@ export class CadProdutoComponent implements OnInit {
     return {
       id: value.id ?? 0,
       fornecedorId: value.fornecedorId ?? 0,
-      categoriaId: value.categoriaId ?? 0,
+      categoria: value.categoria || null,
       unidadeMedida: value.unidadeMedida || '',
       precoUnitario: value.precoUnitario || null,
       qtdeEstoque: value.qtdeEstoque || null,
-      ativo: value.ativo || true,
+      ativo: value.ativo !== null && value.ativo !== undefined ? value.ativo : true,
       descricao: value.descricao || ''
     };
   }

@@ -18,6 +18,9 @@ import {MatListModule} from "@angular/material/list";
 import {MatSlideToggleModule} from "@angular/material/slide-toggle";
 import {MatProgressBarModule} from "@angular/material/progress-bar";
 import {NgxMaskDirective, provideNgxMask} from "ngx-mask";
+import {MatAutocompleteModule} from "@angular/material/autocomplete";
+import {MatSelectModule} from "@angular/material/select";
+import {MatRadioModule} from "@angular/material/radio";
 
 @NgModule({
   declarations: [],
@@ -40,7 +43,9 @@ import {NgxMaskDirective, provideNgxMask} from "ngx-mask";
     MatListModule,
     MatSlideToggleModule,
     MatProgressBarModule,
-    NgxMaskDirective
+    NgxMaskDirective,
+    MatSelectModule,
+    MatRadioModule
   ],
   exports: [
     MatTableModule,
@@ -60,7 +65,10 @@ import {NgxMaskDirective, provideNgxMask} from "ngx-mask";
     MatListModule,
     MatSlideToggleModule,
     MatProgressBarModule,
-    NgxMaskDirective
+    NgxMaskDirective,
+    MatAutocompleteModule,
+    MatSelectModule,
+    MatRadioModule
   ],
   providers: [
     provideNgxMask()

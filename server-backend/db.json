@@ -28,7 +28,7 @@
     {
       "id": 6,
       "nome": "Carnes",
-      "descricao": "Carnes preparadas"
+      "descricao": "Carnes preparadas ao forno"
     },
     {
       "id": 7,
@@ -85,7 +85,11 @@
     {
       "id": 1,
       "fornecedorId": 5,
-      "categoriaId": 1,
+      "categoria": {
+        "id": 1,
+        "nome": "Bebidas",
+        "descricao": "Bebidas curtas, café, chás e sucos"
+      },
       "unidadeMedida": "UN",
       "precoUnitario": 6.52,
       "qtdeEstoque": 32,
@@ -95,7 +99,11 @@
     {
       "id": 2,
       "fornecedorId": 5,
-      "categoriaId": 1,
+      "categoria": {
+        "id": 1,
+        "nome": "Bebidas",
+        "descricao": "Bebidas curtas, café, chás e sucos"
+      },
       "unidadeMedida": "UN",
       "precoUnitario": 8.12,
       "qtdeEstoque": 20,
@@ -105,7 +113,11 @@
     {
       "id": 3,
       "fornecedorId": 4,
-      "categoriaId": 2,
+      "categoria": {
+        "id": 3,
+        "nome": "Confeitaria",
+        "descricao": "Sobremesas e bolos entre outros"
+      },
       "unidadeMedida": "UN",
       "precoUnitario": 55.56,
       "qtdeEstoque": 12,
@@ -115,12 +127,30 @@
     {
       "id": 4,
       "fornecedorId": 3,
-      "categoriaId": 1,
+      "categoria": {
+        "id": 7,
+        "nome": "Frutas",
+        "descricao": "Frutas"
+      },
       "unidadeMedida": "KG",
       "precoUnitario": 2.54,
       "qtdeEstoque": 200,
       "ativo": true,
       "descricao": "Limão Taiti"
+    },
+    {
+      "id": 5,
+      "fornecedorId": 4,
+      "categoria": {
+        "id": 17,
+        "nome": "Arroz Doce",
+        "descricao": "Arroz doce da Tia Lulu"
+      },
+      "unidadeMedida": "UN",
+      "precoUnitario": 3213.22,
+      "qtdeEstoque": 2322.1,
+      "ativo": false,
+      "descricao": "Teste 1111"
     }
   ],
   "fornecedores": [

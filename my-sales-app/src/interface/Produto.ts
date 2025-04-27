@@ -1,7 +1,9 @@
+import {Categoria} from "./Categoria";
+
 export interface Produto {
   id: number
   fornecedorId: number
-  categoriaId: number
+  categoria: Categoria | null
   unidadeMedida: string
   precoUnitario: number | null
   qtdeEstoque: number | null

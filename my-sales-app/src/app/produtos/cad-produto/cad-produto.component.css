@@ -1,0 +1,4 @@
+:host ::ng-deep mat-radio-button div.mat-internal-form-field > label.mdc-label {
+  padding-left: 0 !important;
+  margin-top: 1px  !important;
+}

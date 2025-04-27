@@ -13,6 +13,17 @@
           </mat-form-field>
         </div>
 
+        <div class="container">
+          <mat-label style="display: flex; flex-direction: column; justify-content: center;">Ativo</mat-label>
+          <mat-radio-group formControlName="ativo" >
+            <mat-radio-button [value]="true">Sim</mat-radio-button>
+            <mat-radio-button [value]="false">Não</mat-radio-button>
+          </mat-radio-group>
+          @if (produtoForm.controls['ativo'].hasError('required')) {
+            <mat-error>Informe se o produto está ativo</mat-error>
+          }
+        </div>
+
         <div class="container" style="display: flex;">
           <mat-form-field class="item" style="flex: 3">
             <mat-label>Descrição</mat-label>
@@ -40,17 +51,29 @@
         <div class="container">
           <mat-form-field class="item">
             <mat-label>Categoria</mat-label>
-            <mat-select formControlName="categoriaId" placeholder="Selecione uma Categoria...">
-              <mat-option [value]="null">
-                Selecione uma Categoria...
-              </mat-option>
-              <mat-option *ngFor="let categoria of listCategoria" [value]="categoria.id">
+            <input #inputCategoria
+                   type="text"
+                   matInput
+                   [required]="true"
+                   placeholder="Selecione uma Categoria..."
+                   [formControl]="produtoForm.controls['categoria']"
+                   [matAutocomplete]="auto"
+                   (input)="filterCategoria()"
+                   (focus)="filterCategoria()">
+
+            <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayCategoria"
+                              (optionSelected)="onCategoriaSelected($event.option.value)">
+              <mat-option *ngFor="let categoria of filteredCategoriaOptions" [value]="categoria">
                 <mat-icon>category</mat-icon>
                 {{ '(' + categoria.id + ') ' + categoria.nome }}
               </mat-option>
-            </mat-select>
-            @if (produtoForm.controls['categoriaId'].hasError('required')) {
+            </mat-autocomplete>
+            @if (produtoForm.controls['categoria'].hasError('required')) {
               <mat-error>Categoria é <strong>requerida</strong></mat-error>
+            }
+
+            @if (produtoForm.controls['categoria'].hasError('invalidCategoria')) {
+              <mat-error>Selecione uma Categoria válida</mat-error>
             }
           </mat-form-field>
 
@@ -72,17 +95,35 @@
         </div>
       </div>
 
+      <div class="container">
+        <mat-form-field class="item">
+          <mat-label>Preço Unitário</mat-label>
+          <input type="number" matInput formControlName="precoUnitario">
+          @if (produtoForm.controls['precoUnitario'].hasError('required')) {
+            <mat-error>Preço unitário é <strong>requerido</strong></mat-error>
+          }
+        </mat-form-field>
+
+        <mat-form-field class="item">
+          <mat-label>Quantidade Estoque</mat-label>
+          <input type="number" matInput formControlName="qtdeEstoque">
+          @if (produtoForm.controls['qtdeEstoque'].hasError('required')) {
+            <mat-error>Quantidade Estoque é <strong>requerida</strong></mat-error>
+          }
+        </mat-form-field>
+      </div>
+
       <button mat-raised-button
               color="primary"
               type="submit"
-              style="margin-right: 8px !important; margin-bottom: 16px !important;"
-              [disabled]="!produtoForm.valid">
+              style="margin-right: 8px !important; margin-top: 25px !important; margin-bottom: 16px !important;"
+              [disabled]="produtoForm.invalid">
         Salvar
       </button>
       <button type="button"
               mat-raised-button
               color="primary"
-              style="margin-bottom: 16px !important;"
+              style="margin-bottom: 16px !important; margin-top: 25px !important;"
               (click)="cancelar()">
         Cancelar
       </button>
