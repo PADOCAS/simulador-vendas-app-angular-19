@@ -10,12 +10,13 @@ import {lastValueFrom} from "rxjs";
 import {Router} from "@angular/router";
 import {LoadingBarComponent} from "../util/loading-bar/loading-bar.component";
 import {MaterialModule} from "../material.module";
+import {ProdutosService} from "../produtos/produtos.service";
 
 @Component({
-    selector: 'app-categorias',
-    templateUrl: './categorias.component.html',
-    styleUrl: './categorias.component.css',
-    imports: [MaterialModule, MatButton, LoadingBarComponent]
+  selector: 'app-categorias',
+  templateUrl: './categorias.component.html',
+  styleUrl: './categorias.component.css',
+  imports: [MaterialModule, MatButton, LoadingBarComponent]
 })
 export class CategoriasComponent implements AfterViewInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -24,7 +25,7 @@ export class CategoriasComponent implements AfterViewInit {
   dataSource = new MatTableDataSource<Categoria>();
   showLoading: Boolean = false;
 
-  constructor(private categoriaService: CategoriasService, private router: Router) {
+  constructor(private categoriaService: CategoriasService, private produtosService: ProdutosService, private router: Router) {
   }
 
   /** Colunas da tabela, servem para reordenar, etc.. */
@@ -69,13 +70,20 @@ export class CategoriasComponent implements AfterViewInit {
       && categoria.id !== null) {
       if (confirm(`Deletar Categoria (${categoria.id}) ${categoria.nome} ?`)) {
         this.showLoading = true;
-        this.categoriaService.deletar(categoria.id).subscribe(
-          data => {
-            this.showLoading = false;
-            //Carregar Categorias após deletar:
-            this.loadCategorias();
-          }
-        );
+
+        //Verifica se é possível excluir, se não tem produto cadastrado com essa categoria:
+        if (await this.produtosService.existsProdutoComCategoria(categoria)) {
+          alert('Não é possível excluir uma categoria que possui produtos cadastrados.');
+          this.showLoading = false;
+        } else {
+          this.categoriaService.deletar(categoria.id).subscribe(
+            data => {
+              this.showLoading = false;
+              //Carregar Categorias após deletar:
+              this.loadCategorias();
+            }
+          );
+        }
       }
     }
   }

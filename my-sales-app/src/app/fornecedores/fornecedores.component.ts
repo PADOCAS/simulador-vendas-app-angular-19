@@ -9,12 +9,13 @@ import {MatTable, MatTableDataSource} from "@angular/material/table";
 import {Fornecedor} from "../../interface/Fornecedor";
 import {FornecedoresItem} from "./fornecedores-datasource";
 import {lastValueFrom} from "rxjs";
+import {ProdutosService} from "../produtos/produtos.service";
 
 @Component({
-    selector: 'app-fornecedores',
-    imports: [MaterialModule, LoadingBarComponent],
-    templateUrl: './fornecedores.component.html',
-    styleUrl: './fornecedores.component.css'
+  selector: 'app-fornecedores',
+  imports: [MaterialModule, LoadingBarComponent],
+  templateUrl: './fornecedores.component.html',
+  styleUrl: './fornecedores.component.css'
 })
 export class FornecedoresComponent implements AfterViewInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -23,7 +24,7 @@ export class FornecedoresComponent implements AfterViewInit {
   dataSource = new MatTableDataSource<Fornecedor>();
   showLoading: Boolean = false;
 
-  constructor(private fornecedorService: FornecedoresService, private router: Router) {
+  constructor(private fornecedorService: FornecedoresService, private produtosService: ProdutosService, private router: Router) {
   }
 
   /** Colunas da tabela, servem para reordenar, etc.. */
@@ -68,16 +69,21 @@ export class FornecedoresComponent implements AfterViewInit {
       && fornecedor.id !== null) {
       if (confirm(`Deletar Fornecedor (${fornecedor.id}) ${fornecedor.razaoSocial} ?`)) {
         this.showLoading = true;
-        this.fornecedorService.deletar(fornecedor.id).subscribe(
-          data => {
-            this.showLoading = false;
-            //Carregar Fornecedores após deletar:
-            this.loadFornecedores();
-          }
-        );
+
+        //Verifica se é possível excluir, se não tem produto cadastrado com esse fornecedor:
+        if (await this.produtosService.existsProdutoComFornecedor(fornecedor)) {
+          alert('Não é possível excluir um fornecedor que possui produtos cadastrados.');
+          this.showLoading = false;
+        } else {
+          this.fornecedorService.deletar(fornecedor.id).subscribe(
+            data => {
+              this.showLoading = false;
+              //Carregar Fornecedores após deletar:
+              this.loadFornecedores();
+            }
+          );
+        }
       }
     }
   }
-
-
 }
