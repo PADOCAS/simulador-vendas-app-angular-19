@@ -225,7 +225,16 @@ app.delete('/api/fornecedores/:id', async (req, res) => {
 /**** -------------  Produtos: -------------------****/
 app.get('/api/produtos', async (req, res) => {
   const db = await loadDB();
-  res.json(db.produtos || []);
+
+  let produtos = db.produtos || [];
+
+  // Filtro: ativo=true (Pode receber esse filtro na requisição da tela de vendas)
+  if (req.query.ativo === 'true') {
+    produtos = produtos.filter(p => p.ativo === true);
+  }
+
+  // Outros filtros podem ser adicionados aqui futuramente!!!
+  res.json(produtos);
 });
 
 // Endpoint para buscar um Produto por ID

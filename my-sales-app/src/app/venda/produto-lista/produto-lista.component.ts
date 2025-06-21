@@ -23,9 +23,12 @@ export class ProdutoListaComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.showLoading = true;
     this.getProdutos().then(() => {
+      this.showLoading = false;
     }, error => {
       console.log('Erro ao carregar Produtos: ' + error);
+      this.showLoading = false;
     });
   }
 
@@ -34,8 +37,11 @@ export class ProdutoListaComponent implements OnInit {
   }
 
   async onSearch() {
+    this.showLoading = true;
     this.getProdutos().then(() => {
+      this.showLoading = false;
     }, error => {
+      this.showLoading = false;
       console.log('Erro ao carregar Produtos: ' + error);
     });
   }
