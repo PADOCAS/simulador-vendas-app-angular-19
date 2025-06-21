@@ -148,9 +148,23 @@
       },
       "unidadeMedida": "UN",
       "precoUnitario": 3213.22,
-      "qtdeEstoque": 2322.1,
-      "ativo": false,
-      "descricao": "Teste 1111"
+      "qtdeEstoque": 2322.15,
+      "ativo": true,
+      "descricao": "Teste Rei"
+    },
+    {
+      "id": 6,
+      "fornecedorId": 5,
+      "categoria": {
+        "id": 13,
+        "nome": "Confeitaria Rei",
+        "descricao": "Sobremesas e bolos"
+      },
+      "unidadeMedida": "UN",
+      "precoUnitario": 1.75,
+      "qtdeEstoque": 200,
+      "ativo": true,
+      "descricao": "Algodão doce"
     }
   ],
   "fornecedores": [

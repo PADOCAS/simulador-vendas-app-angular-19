@@ -15,7 +15,7 @@
 
         <div class="container">
           <mat-label style="display: flex; flex-direction: column; justify-content: center;">Ativo</mat-label>
-          <mat-radio-group formControlName="ativo" >
+          <mat-radio-group formControlName="ativo">
             <mat-radio-button [value]="true">Sim</mat-radio-button>
             <mat-radio-button [value]="false">Não</mat-radio-button>
           </mat-radio-group>
@@ -98,7 +98,11 @@
       <div class="container">
         <mat-form-field class="item">
           <mat-label>Preço Unitário</mat-label>
-          <input type="number" matInput formControlName="precoUnitario">
+          <input mask="separator.2"
+                 thousandSeparator="."
+                 decimalMarker=","
+                 matInput
+                 formControlName="precoUnitario">
           @if (produtoForm.controls['precoUnitario'].hasError('required')) {
             <mat-error>Preço unitário é <strong>requerido</strong></mat-error>
           }
@@ -106,7 +110,10 @@
 
         <mat-form-field class="item">
           <mat-label>Quantidade Estoque</mat-label>
-          <input type="number" matInput formControlName="qtdeEstoque">
+          <input mask="separator"
+                 thousandSeparator="."
+                 matInput
+                 formControlName="qtdeEstoque">
           @if (produtoForm.controls['qtdeEstoque'].hasError('required')) {
             <mat-error>Quantidade Estoque é <strong>requerida</strong></mat-error>
           }

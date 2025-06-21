@@ -1,0 +1,51 @@
+<mat-card>
+  <mat-card-content>
+    <!--  Não vamos usar validação do proprio navegador, por isso usamos o novalidate, vamos trabalhar nós mesmos com as validações-->
+    <form [formGroup]="searchForm" (ngSubmit)="onSearch()" novalidate>
+      <div>
+        <div class="container">
+          <mat-form-field class="width-full">
+            <input matInput placeholder="Produtos" formControlName="searchTerm"/>
+          </mat-form-field>
+          <div class="pt-10">
+            <button mat-button type="submit">Pesquisar</button>
+          </div>
+        </div>
+      </div>
+    </form>
+    <div class="container wrap">
+      @for (produto of produtos; track produto.id) {
+        <div style="width: 300px">
+          <mat-card class="p-5">
+            <mat-card-title-group>
+              <mat-card-subtitle> {{ produto.categoria?.nome }}</mat-card-subtitle>
+              <mat-card-subtitle>
+                <h3>{{ produto.descricao }}</h3>
+              </mat-card-subtitle>
+              <div>
+                <strong>{{ produto.precoUnitario | currency:'BRL':'symbol' }} </strong>
+              </div>
+            </mat-card-title-group>
+            <div style="display: flex; flex-direction: row; justify-content: space-between;">
+              <mat-card-actions align="start" style="padding: 0px;">
+                <mat-card-subtitle>Qtde Estoque: {{ produto.qtdeEstoque | number:'1.0-0' }}</mat-card-subtitle>
+              </mat-card-actions>
+
+              <mat-card-actions align="end" style="padding: 0px;">
+                <button mat-icon-button [disabled]="produto.qtdeEstoque == 0">
+                  <mat-icon>add_shopping_cart</mat-icon>
+                </button>
+              </mat-card-actions>
+            </div>
+          </mat-card>
+        </div>
+      }
+      @if (!produtos || produtos.length === 0) {
+        <p>Nenhum produto encontrado.</p>
+      }
+    </div>
+  </mat-card-content>
+
+  <!-- progress bar-->
+  <app-loading-bar [visible]="showLoading"></app-loading-bar>
+</mat-card>

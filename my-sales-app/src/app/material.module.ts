@@ -1,5 +1,5 @@
-import {NgModule} from '@angular/core';
-import {CommonModule} from '@angular/common';
+import {LOCALE_ID, NgModule} from '@angular/core';
+import {CommonModule, registerLocaleData} from '@angular/common';
 import {ReactiveFormsModule} from '@angular/forms'
 import {MatButtonModule} from '@angular/material/button'
 import {MatCardModule} from '@angular/material/card'
@@ -21,6 +21,10 @@ import {NgxMaskDirective, provideNgxMask} from "ngx-mask";
 import {MatAutocompleteModule} from "@angular/material/autocomplete";
 import {MatSelectModule} from "@angular/material/select";
 import {MatRadioModule} from "@angular/material/radio";
+import localePt from '@angular/common/locales/pt';
+
+// 👇 Registra o locale pt-BR
+registerLocaleData(localePt);
 
 @NgModule({
   declarations: [],
@@ -71,7 +75,8 @@ import {MatRadioModule} from "@angular/material/radio";
     MatRadioModule
   ],
   providers: [
-    provideNgxMask()
+    provideNgxMask(),
+    { provide: LOCALE_ID, useValue: 'pt-BR' }
   ]
 })
 export class MaterialModule {

@@ -2,6 +2,8 @@ import {Routes} from '@angular/router';
 import {DashboardComponent} from "./dashboard/dashboard.component";
 import {CadCategoriaComponent} from "./categorias/cad-categoria/cad-categoria.component";
 import {FornecedoresComponent} from "./fornecedores/fornecedores.component";
+import {VendaComponent} from "./venda/venda.component";
+import {ProdutoListaComponent} from "./venda/produto-lista/produto-lista.component";
 
 export const routes: Routes = [
   //Categorias:
@@ -60,5 +62,11 @@ export const routes: Routes = [
         (c) => c.CadProdutoComponent
       )
   },
-  {path: '', component: DashboardComponent}
+  {path: '',
+    component: VendaComponent,
+    children: [{
+      path: '',
+      component: ProdutoListaComponent
+    }]
+  }
 ];

@@ -1,0 +1,11 @@
+h3 {
+  display: block;
+  font-size: 0.90em;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  font-weight: bold;
+  unicode-bidi: isolate;
+  font: 600 0.9rem / 1.2rem Roboto, sans-serif;
+}
