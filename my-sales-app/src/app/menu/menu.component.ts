@@ -12,7 +12,7 @@ export class MenuComponent {
   menuItems: Array<MenuItem> = [
     {
       path: '',
-      label: 'Início'
+      label: 'Simulação Vendas'
     },
     {
       path: 'categorias',
