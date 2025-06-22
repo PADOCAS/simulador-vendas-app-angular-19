@@ -101,6 +101,7 @@
           <input mask="separator.2"
                  thousandSeparator="."
                  decimalMarker=","
+                 min="0"
                  matInput
                  formControlName="precoUnitario">
           @if (produtoForm.controls['precoUnitario'].hasError('required')) {
@@ -110,7 +111,8 @@
 
         <mat-form-field class="item">
           <mat-label>Quantidade Estoque</mat-label>
-          <input mask="separator"
+          <input mask="separator.0"
+                 min="0"
                  thousandSeparator="."
                  matInput
                  formControlName="qtdeEstoque">

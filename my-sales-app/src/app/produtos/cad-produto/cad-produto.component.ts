@@ -32,13 +32,14 @@ export class CadProdutoComponent implements OnInit {
   // Ele nos ajuda com esqueleto do formulário, validações, valor padrão... muito bom!
   // produtoForm -> é uma variável do tipo FormGroup que representa os dados que estarão
   // presentes no formulário. Cada campo no formulário é representado pela classe FormControl
+  // Os valores devemos deixar assim com Validator.min(0) para permitar o ZERO.
   produtoForm = this.form.group({
     id: [null as number | null],
     fornecedorId: [null as number | null, Validators.required],
     categoria: [null as Categoria | null, [Validators.required, this.categoriaValidaValidator()]],
     unidadeMedida: ['', [Validators.required, Validators.minLength(2)]],
-    precoUnitario: [null as number | null, [Validators.required]],
-    qtdeEstoque: [null as number | null, [Validators.required]],
+    precoUnitario: [null as number | null, [Validators.required, Validators.min(0)]],
+    qtdeEstoque: [null as number | null, [Validators.required, Validators.min(0)]],
     ativo: [true as boolean, [Validators.required]],
     descricao: ['', [Validators.required, Validators.minLength(3)]]
   });
@@ -152,8 +153,8 @@ export class CadProdutoComponent implements OnInit {
       fornecedorId: value.fornecedorId ?? 0,
       categoria: value.categoria || null,
       unidadeMedida: value.unidadeMedida || '',
-      precoUnitario: value.precoUnitario || null,
-      qtdeEstoque: value.qtdeEstoque || null,
+      precoUnitario: value.precoUnitario !== null && value.precoUnitario !== undefined ? value.precoUnitario : null,
+      qtdeEstoque: value.qtdeEstoque !== null && value.qtdeEstoque !== undefined ? value.qtdeEstoque : null,
       ativo: value.ativo !== null && value.ativo !== undefined ? value.ativo : true,
       descricao: value.descricao || ''
     };

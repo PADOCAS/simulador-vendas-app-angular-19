@@ -165,6 +165,20 @@
       "qtdeEstoque": 200,
       "ativo": true,
       "descricao": "Algodão doce"
+    },
+    {
+      "id": 7,
+      "fornecedorId": 5,
+      "categoria": {
+        "id": 13,
+        "nome": "Confeitaria Rei",
+        "descricao": "Sobremesas e bolos"
+      },
+      "unidadeMedida": "UN",
+      "precoUnitario": 4.49,
+      "qtdeEstoque": 0,
+      "ativo": true,
+      "descricao": "Paçoca Aquita"
     }
   ],
   "fornecedores": [
