@@ -22,6 +22,7 @@ import {MatAutocompleteModule} from "@angular/material/autocomplete";
 import {MatSelectModule} from "@angular/material/select";
 import {MatRadioModule} from "@angular/material/radio";
 import localePt from '@angular/common/locales/pt';
+import {MatBadge, MatBadgeModule} from "@angular/material/badge";
 
 // 👇 Registra o locale pt-BR
 registerLocaleData(localePt);
@@ -49,7 +50,8 @@ registerLocaleData(localePt);
     MatProgressBarModule,
     NgxMaskDirective,
     MatSelectModule,
-    MatRadioModule
+    MatRadioModule,
+    MatBadgeModule
   ],
   exports: [
     MatTableModule,
@@ -72,7 +74,8 @@ registerLocaleData(localePt);
     NgxMaskDirective,
     MatAutocompleteModule,
     MatSelectModule,
-    MatRadioModule
+    MatRadioModule,
+    MatBadgeModule
   ],
   providers: [
     provideNgxMask(),

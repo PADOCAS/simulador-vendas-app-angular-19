@@ -32,7 +32,9 @@
               </mat-card-actions>
 
               <mat-card-actions align="end" style="padding: 0px;">
-                <button mat-icon-button [disabled]="produto.qtdeEstoque == 0">
+                <button mat-icon-button
+                        (click)="onAddToCart(produto);"
+                        [disabled]="produto.qtdeEstoque == 0">
                   <mat-icon>add_shopping_cart</mat-icon>
                 </button>
               </mat-card-actions>

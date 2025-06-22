@@ -6,6 +6,7 @@ import {map, shareReplay} from 'rxjs/operators';
 import {MenuComponent} from "../menu/menu.component";
 import {RouterOutlet} from "@angular/router";
 import {MaterialModule} from "../material.module";
+import {VendaService} from "../venda/venda.service";
 
 @Component({
     selector: 'app-home',
@@ -20,6 +21,7 @@ import {MaterialModule} from "../material.module";
 })
 export class HomeComponent {
   private breakpointObserver = inject(BreakpointObserver);
+  vendaService = inject(VendaService) //Adicionando o serviço de vendas
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(

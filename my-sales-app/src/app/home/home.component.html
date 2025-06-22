@@ -20,6 +20,14 @@
         </button>
       }
       <span>Simulador Vendas App</span>
+
+      <!-- Botão de Carrinho -->
+      <div class="width-full"></div>
+      <button mat-icon-button>
+        <mat-icon [matBadge]="vendaService.qtdeItensNoCarrinho" matBadgeColor="warn">
+          shopping_cart
+        </mat-icon>
+      </button>
     </mat-toolbar>
     <!-- Add Content Here -->
     <!-- Comentário apenas para testes commit apos formatacao de maquina -->
