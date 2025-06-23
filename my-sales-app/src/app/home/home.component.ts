@@ -31,7 +31,6 @@ export class HomeComponent {
     );
 
   navegarParaCheckout() {
-    console.log('indo para checkout...');
     this.router.navigate(['/checkout']);
   }
 }
