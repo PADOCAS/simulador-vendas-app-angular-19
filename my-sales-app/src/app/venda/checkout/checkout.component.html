@@ -1,0 +1,26 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Pagamento</mat-card-title>
+  </mat-card-header>
+  <mat-card-content style="margin-top: 5px;">
+    @for (item of items; track item.produtoId) {
+      <div class="container center">
+        <div class="item-50">{{ item.descricao }}</div>
+        <div class="item-20">{{ item.precoUnitario | currency:'BRL':'symbol' }}</div>
+        <div class="item-20">{{ item.quantidade | number:'1.0-0'}}</div>
+        <div class="item-10">
+          <button mat-icon-button (click)="onAddItem(item)">
+            <mat-icon>add</mat-icon>
+          </button>
+        </div>
+        <div class="item-10">
+          <button mat-icon-button (click)="onRemoveItem(item)">
+            <mat-icon>remove</mat-icon>
+          </button>
+        </div>
+      </div>
+    }
+    <br />
+    Total: <strong>{{ vendaService.valorTotalCarrinho | currency:'BRL':'symbol' }} </strong>
+  </mat-card-content>
+</mat-card>

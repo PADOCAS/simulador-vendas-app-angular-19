@@ -62,6 +62,14 @@ export const routes: Routes = [
         (c) => c.CadProdutoComponent
       )
   },
+  //Checkout:
+  {
+    path: 'checkout',
+    loadComponent: () =>
+      import('./venda/checkout/checkout.component').then(
+        (c) => c.CheckoutComponent
+      )
+  },
   {path: '',
     component: VendaComponent,
     children: [{

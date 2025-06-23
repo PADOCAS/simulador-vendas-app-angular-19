@@ -44,6 +44,8 @@ export class VendaService {
 
           if ((element.quantidade + 1) <= qtdeEstoqueDisponivel) {
             element.quantidade++;
+          } else {
+            alert("Sem Estoque disponível para o produto! Qtde Estoque: " + qtdeEstoqueDisponivel);
           }
         }
         found = true
