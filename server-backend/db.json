@@ -126,17 +126,17 @@
     },
     {
       "id": 4,
-      "fornecedorId": 3,
+      "fornecedorId": 5,
       "categoria": {
-        "id": 7,
-        "nome": "Frutas",
-        "descricao": "Frutas"
+        "id": 13,
+        "nome": "Confeitaria Rei",
+        "descricao": "Sobremesas e bolos"
       },
-      "unidadeMedida": "KG",
-      "precoUnitario": 2.54,
+      "unidadeMedida": "UN",
+      "precoUnitario": 8.9,
       "qtdeEstoque": 200,
       "ativo": true,
-      "descricao": "Limão Taiti"
+      "descricao": "Sucrilhos Sem Açucar"
     },
     {
       "id": 5,
