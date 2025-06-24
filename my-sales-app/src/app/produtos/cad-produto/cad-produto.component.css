@@ -2,3 +2,7 @@
   padding-left: 0 !important;
   margin-top: 1px  !important;
 }
+
+.mat-mdc-card-content {
+  padding-bottom: 16px;
+}

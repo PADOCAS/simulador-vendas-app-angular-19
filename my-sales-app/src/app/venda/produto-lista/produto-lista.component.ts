@@ -4,13 +4,13 @@ import {ProdutosService} from "../../produtos/produtos.service";
 import {FormBuilder} from "@angular/forms";
 import {Produto} from "../../../interface/Produto";
 import {LoadingBarComponent} from "../../util/loading-bar/loading-bar.component";
-import {CurrencyPipe, DecimalPipe} from "@angular/common";
 import {VendaService} from "../venda.service";
 import {CarrinhoItem} from "../../../interface/carrinho-item";
+import {ProdutoCardComponent} from "./produto-card/produto-card.component";
 
 @Component({
   selector: 'app-produto-lista',
-  imports: [MaterialModule, LoadingBarComponent, CurrencyPipe, DecimalPipe],
+  imports: [MaterialModule, LoadingBarComponent, ProdutoCardComponent],
   templateUrl: './produto-lista.component.html',
   styleUrl: './produto-lista.component.css'
 })

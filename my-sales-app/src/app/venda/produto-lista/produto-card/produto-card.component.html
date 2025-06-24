@@ -1,0 +1,26 @@
+<div style="width: 300px">
+  <mat-card class="p-5">
+    <mat-card-title-group>
+      <mat-card-subtitle> {{ produto.categoria?.nome }}</mat-card-subtitle>
+      <mat-card-subtitle style="height: 65px !important;">
+        <h3>{{ produto.descricao }}</h3>
+      </mat-card-subtitle>
+      <div>
+        <strong>{{ produto.precoUnitario | currency:'BRL':'symbol' }} </strong>
+      </div>
+    </mat-card-title-group>
+    <div style="display: flex; flex-direction: row; justify-content: space-between;">
+      <mat-card-actions align="start" style="padding: 0px;">
+        <mat-card-subtitle>Qtde Estoque: {{ produto.qtdeEstoque | number:'1.0-0' }}</mat-card-subtitle>
+      </mat-card-actions>
+
+      <mat-card-actions align="end" style="padding: 0px;">
+        <button mat-icon-button
+                (click)="onAddToCart(produto);"
+                [disabled]="produto.qtdeEstoque == 0">
+          <mat-icon>add_shopping_cart</mat-icon>
+        </button>
+      </mat-card-actions>
+    </div>
+  </mat-card>
+</div>
