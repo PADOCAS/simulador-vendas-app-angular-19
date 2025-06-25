@@ -11,13 +11,29 @@ export const routes: Routes = [
     // {path: 'categorias',component: CategoriasComponent},   // Esse modo é da forma que fica tudo junto
     path: 'categorias',
     //Dessa forma o deploy fica mais leve, náo fica tudo num unico arquivo -> Deixando o arquivo de categoria isolado, onde só será carregado se o usuário acessar a página categorias!
+    //Isso deixa a aplicação mais leve e dinâmica, onde só carrega a página de categorias se o usuário acessar a rota!!
     loadComponent: () =>
       import('./categorias/categorias.component').then(
         (c) => c.CategoriasComponent
       )
   },
-  {path: 'cad-categoria', component: CadCategoriaComponent},
-  {path: 'cad-categoria-edit/:id', component: CadCategoriaComponent},
+  //Jeito padrão onde carrega sempre, não dinâmico e carrego mesmo sem o usuário acessar a rota!!
+  // {path: 'cad-categoria', component: CadCategoriaComponent},
+  // {path: 'cad-categoria-edit/:id', component: CadCategoriaComponent},
+  {
+    path: 'cad-categoria',
+    loadComponent: () =>
+      import('./categorias/cad-categoria/cad-categoria.component').then(
+        (c) => c.CadCategoriaComponent
+      )
+  },
+  {
+    path: 'cad-categoria-edit/:id',
+    loadComponent: () =>
+      import('./categorias/cad-categoria/cad-categoria.component').then(
+        (c) => c.CadCategoriaComponent
+      )
+  },
   //Fornecedores:
   {
     path: 'fornecedores',
@@ -70,11 +86,31 @@ export const routes: Routes = [
         (c) => c.CheckoutComponent
       )
   },
-  {path: '',
-    component: VendaComponent,
+  //Simulador de Venda:
+  //Padrão - não dinâmico e pesado mesmo sem acessar:
+  // {path: '',
+  //   component: VendaComponent,
+  //   children: [{
+  //     path: '',
+  //     component: ProdutoListaComponent
+  //   }]
+  // },
+  //Dinâmico, carregando apenas quando necessário:
+  {
+    path: '',
+    loadComponent: () =>
+      import('./venda/venda.component').then(
+        (c) => c.VendaComponent
+      ),
     children: [{
       path: '',
-      component: ProdutoListaComponent
+      loadComponent: () =>
+        import('./venda/produto-lista/produto-lista.component').then(
+          (c) => c.ProdutoListaComponent
+        )
     }]
-  }
+  },
+
+
+
 ];
