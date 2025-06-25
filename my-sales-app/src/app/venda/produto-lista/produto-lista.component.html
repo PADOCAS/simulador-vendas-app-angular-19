@@ -15,7 +15,19 @@
     </form>
     <div class="container wrap">
       @for (produto of produtos; track produto.id) {
-        <app-produto-card [produto]="produto"></app-produto-card>
+        @defer (on viewport) {
+<!--  @defer adia o carregamento até que a condição seja atendida (viewport) esteja visivel a tela -> útil para performance e carregamento apenas quando necessário mesmo-->
+          <app-produto-card [produto]="produto"></app-produto-card>
+        } @placeholder {
+<!--  @placeholder Define o conteúdo temporário que aparece antes de começar o carregamento, caso o conteúdo ainda não esteja visível na tela.-->
+          <span>Carregando...</span>
+        } @loading () {
+<!--  @loading Define o conteúdo que aparece enquanto o carregamento real está acontecendo (por exemplo, buscando dados, carregando o componente etc).-->
+          <span>Carregando...</span>
+        }
+<!--  Enquanto não renderiza os cards:-->
+<!--  Mostra um placeholder antes do carregamento iniciar.-->
+<!--  Mostra um loading enquanto está carregando o conteúdo de verdade.-->
       }
       @if (!produtos || produtos.length === 0) {
         <p>Nenhum produto encontrado.</p>
