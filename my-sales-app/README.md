@@ -1,27 +1,27 @@
-# MySalesApp
+# Projeto: my-sales-app
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.0.4.
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 19.1.5.
 
-## Development server
+## Ambiente de desenvolvimento
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Para rodar o servidor, no diretório principal do my-sales-app rodar: ng serve --open
+* Onde por padrão vai subir na porta 4200.
+* Acesso: `http://localhost:4200/`
+* Lembrar de subir o servidor json local para acessar os dados (projeto server-backend)
 
-## Code scaffolding
+## Ambiente de Produção
+Deixei direto no github-pages o projeto, acessando o servidor json que está no VERCEL.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Detalhes Projeto
+Projeto feito com base no livro-angular-17.pdf criado por Daniel Schmitz (2024), onde usei o trabalho dele como base mas fiz várias implementações diferentes em cima do projeto, aplicando outros conceitos e formatos, além de aplicar tudo no angular 19 (mais recente).
+Segue link do projeto original e o livro está dentro do projeto:
+* Livro: livro-angular-17.pdf
+* Projeto Original: https://github.com/danielschmitz/my-sales-app-angular
+* Demonstração do Projeto Original: https://danielschmitz.github.io/my-sales-app-angular/
 
-## Build
+Cadastro de Categorias
+Cadastro de Fornecedores
+Cadastro de Produtos
+Simulação de Vendas
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+Projeto GitHub-pages: https://padocas.github.io/simulador-vendas-app-angular-19/
