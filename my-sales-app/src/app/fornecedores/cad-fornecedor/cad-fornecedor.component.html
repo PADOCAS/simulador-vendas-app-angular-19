@@ -31,7 +31,7 @@
             <mat-label>Nome Fantasia</mat-label>
             <input matInput formControlName="nomeFantasia"/>
             @if (fornecedorForm.controls['nomeFantasia'].hasError('required')) {
-              <mat-error>Nome Fantasia é..... <strong>requerida</strong></mat-error>
+              <mat-error>Nome Fantasia é <strong>requerida</strong></mat-error>
             }
             @if (fornecedorForm.controls['nomeFantasia'].hasError('minlength')) {
               <mat-error>Nome Fantasia deve ter no mínimo 3 caracteres</mat-error>
