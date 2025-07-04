@@ -17,8 +17,8 @@
 //
 // module.exports = server;
 
-//Versel:
-// Deploy para Versel, deixar ativo dessa forma
+//Vercel:
+// Deploy para Vercel, deixar ativo dessa forma
 const express = require('express');
 const cors = require('cors');
 const fs = require('fs/promises');
