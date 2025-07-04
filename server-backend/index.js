@@ -307,4 +307,3 @@ app.delete('/api/produtos/:id', async (req, res) => {
 });
 
 module.exports = app;
-
