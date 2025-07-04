@@ -15,7 +15,7 @@ Deixei direto no github-pages o projeto, acessando o servidor json que está no 
 ## Detalhes Projeto
 Projeto feito com base no livro-angular-17.pdf criado por Daniel Schmitz (2024), onde usei o trabalho dele como base mas fiz várias implementações diferentes em cima do projeto, aplicando outros conceitos e formatos, além de aplicar tudo no angular 19 (mais recente).
 Segue link do projeto original e o livro está dentro do projeto:
-* Livro: livro-angular-17.pdf
+* Livro: livro-angular-17.pdf (Está anexado no diretório do projeto)
 * Projeto Original: https://github.com/danielschmitz/my-sales-app-angular
 * Demonstração do Projeto Original: https://danielschmitz.github.io/my-sales-app-angular/
 
